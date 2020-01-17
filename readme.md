@@ -5,6 +5,10 @@
 In flutter_app we have the app that we developed in the lecture.
 You need to modify the app given and add these given specifications
 
+- We have a search bar at the top, it filters the list
+- New dialog to add new items to list
+- Swipe to remove elements
+
 ![App Design](https://github.com/tmibvishal/flutter_homework_assignment/blob/master/Flutter%20Assignment_Homework.jpg?raw=true)
 
 # Sources
