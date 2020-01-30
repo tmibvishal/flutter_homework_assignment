@@ -16,13 +16,7 @@ class _ScreenState extends State<Screen> {
   String subtitle = '';
 
   List<Widget> listItems() {
-    List<Widget> temp = [
-      TextField(
-        onChanged: (String newText) {
-          val = newText;
-        },
-      ),
-    ];
+    List<Widget> temp = [];
     for (int i = 0; i < items.length; i++) {
       temp.add(
         ListTile(
@@ -39,7 +33,20 @@ class _ScreenState extends State<Screen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Add Item'),
+            title: Center(
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  'Add Item',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    backgroundColor: Colors.white,
+                    fontSize: 30,
+                  ),
+                ),
+              ),
+            ),
             elevation: 5,
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -53,6 +60,9 @@ class _ScreenState extends State<Screen> {
                     val = text;
                   },
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -62,11 +72,16 @@ class _ScreenState extends State<Screen> {
                     subtitle = text;
                   },
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    RaisedButton(
-                      child: Text('cancel'),
+                    FlatButton(
+                      color: Colors.blue[50],
+                      textColor: Colors.blue[900],
+                      child: Text('Cancel'),
                       onPressed: () {
                         setState(
                           () {
@@ -75,8 +90,13 @@ class _ScreenState extends State<Screen> {
                         );
                       },
                     ),
-                    RaisedButton(
+                    SizedBox(
+                      width: 5,
+                    ),
+                    FlatButton(
                       child: Text('Add'),
+                      color: Colors.blue[50],
+                      textColor: Colors.blue[900],
                       onPressed: () {
                         setState(() {
                           items.add({
