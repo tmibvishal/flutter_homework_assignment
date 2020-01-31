@@ -16,16 +16,23 @@ class _ScreenState extends State<Screen> {
   String subtitle = '';
 
   List<Widget> listItems() {
+
     List<Widget> temp = [];
     for (int i = 0; i < items.length; i++) {
       temp.add(
-        ListTile(
-          title: Text(items[i]['title']),
-          subtitle: Text(items[i]['subtitle']),
+        Dismissible(
+          key: Key(items[i]['title']),
+          onDismissed: (_) {
+            temp.remove(items[i]);
+          },
+          child: ListTile(
+            title: Text(items[i]['title']),
+            subtitle: Text(items[i]['subtitle']),
+          ),
         ),
       );
     }
-    return temp;
+    return items.length==0 ? Text('No Items Added') : temp;
   }
 
   void _addNewTransaction() {
