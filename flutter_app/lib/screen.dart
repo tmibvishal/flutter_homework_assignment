@@ -15,26 +15,6 @@ class _ScreenState extends State<Screen> {
   String val = "";
   String subtitle = '';
 
-  List<Widget> listItems() {
-
-    List<Widget> temp = [];
-    for (int i = 0; i < items.length; i++) {
-      temp.add(
-        Dismissible(
-          key: Key(items[i]['title']),
-          onDismissed: (_) {
-            temp.remove(items[i]);
-          },
-          child: ListTile(
-            title: Text(items[i]['title']),
-            subtitle: Text(items[i]['subtitle']),
-          ),
-        ),
-      );
-    }
-    return items.length==0 ? Text('No Items Added') : temp;
-  }
-
   void _addNewTransaction() {
     showDialog(
         context: context,
@@ -130,8 +110,22 @@ class _ScreenState extends State<Screen> {
       ),
       body: Container(
         padding: EdgeInsets.all(10),
-        child: ListView(
-          children: listItems(),
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            final item = items[index];
+            return Dismissible(
+              key: Key(item['title']),
+              onDismissed: (_) {
+                items.removeAt(index);
+              },
+              child: ListTile(
+                title: Text(items[index]['title']),
+                subtitle: Text(items[index]['subtitle']),
+              ),
+              background: Container(color: Colors.red),
+            );
+          },
+          itemCount: items.length,
         ),
       ),
       floatingActionButton: FloatingActionButton(
